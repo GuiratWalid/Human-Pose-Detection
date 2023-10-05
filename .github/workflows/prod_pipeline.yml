@@ -25,6 +25,7 @@ jobs:
           pip3 install torch torchvision --extra-index-url https://download.pytorch.org/whl/cu113
 
       - name: Install other dependencies
+        run: |
           export PATH=/usr/local/cuda/bin/:$PATH
           export LD_LIBRARY_PATH=/usr/local/cuda/lib64/:$LD_LIBRARY_PATH
           pip install cython
@@ -32,6 +33,7 @@ jobs:
           python3 setup.py build develop --user
 
       - name: Install PyTorch3D (for visualization)
+        run: |
           conda install -c fvcore -c iopath -c conda-forge fvcore iopath
           conda install -c bottler nvidiacub
           pip install git+ssh://git@github.com/facebookresearch/pytorch3d.git@stable
