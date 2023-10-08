@@ -28,7 +28,7 @@ COPY custom_dataset /app/custom_dataset
 COPY custom_config.yaml /app/AlphaPose/configs/custom_config.yaml
 
 # Expose any necessary ports
-# EXPOSE 8888
+# EXPOSE 8090
 
 # Set environment variables (if needed)
 # ENV MY_VARIABLE=value
