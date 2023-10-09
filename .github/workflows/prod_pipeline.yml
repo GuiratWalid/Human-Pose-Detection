@@ -33,7 +33,38 @@ jobs:
           python3 setup.py build develop --user
 
       - name: Install PyTorch3D (for visualization)
-        run: |
+      - run: |
           conda install -c fvcore -c iopath -c conda-forge fvcore iopath
           conda install -c bottler nvidiacub
           pip install git+ssh://git@github.com/facebookresearch/pytorch3d.git@stable
+          - name: Build Docker Image
+      - run: |
+          docker build -t walidguirat/alphapose:0.1 .
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker push walidguirat/alphapose:0.1 .
+
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          service_account_key: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+          project_id: your-gcp-project-id
+          export_default_credentials: true
+
+      - name: Authenticate with Google Cloud
+        run: gcloud auth activate-service-account --key-file=${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+
+      - name: Pull Docker Image
+        run: |
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker pull walidguirat/alphapose:0.1 .
+
+      - name: Run Docker Container on GCP VM
+        run: |
+          gcloud compute ssh your-gcp-vm-name --command "docker run -d walidguirat/alphapose:0.1 ."
