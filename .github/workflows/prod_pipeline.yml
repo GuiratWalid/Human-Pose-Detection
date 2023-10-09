@@ -67,15 +67,15 @@ jobs:
       - name: Authenticate with Google Cloud
         run: |
           echo "Authenticating with Google Cloud..."
-          #gcloud auth activate-service-account --key-file=${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+          # gcloud auth activate-service-account --key-file=${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
 
       - name: Pull Docker Image
         run: |
           echo "Pulling Docker image..."
-          #docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          #docker pull walidguirat/alphapose:0.1 .
+          # docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          #  docker pull walidguirat/alphapose:0.1 .
 
       - name: Run Docker Container on GCP VM
         run: |
           echo "Running Docker container on GCP VM..."
-          #gcloud compute ssh your-gcp-vm-name --command "docker run -d walidguirat/alphapose:0.1 ."
+          # gcloud compute ssh your-gcp-vm-name --command "docker run -d walidguirat/alphapose:0.1 ."
