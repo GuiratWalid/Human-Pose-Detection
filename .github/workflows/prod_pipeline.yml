@@ -1,6 +1,6 @@
-name: PRODUCTION-CI/CD Pipeline
+name: PRODUCTION -CI/CD Pipeline
 
-run-name: PRODUCTION-CI/CD Pipeline
+run-name: PRODUCTION -CI/CD Pipeline
 
 on:
   push:
@@ -35,13 +35,13 @@ jobs:
           echo "Run !"
 
       - name: Install PyTorch3D (for visualization)
-      - run: |
+        run: |
           #conda install -c fvcore -c iopath -c conda-forge fvcore iopath
           #conda install -c bottler nvidiacub
           #pip install git+ssh://git@github.com/facebookresearch/pytorch3d.git@stable
           echo "Run !"
       - name: Build Docker Image
-      - run: |
+        run: |
           echo "Run !"
           #docker build -t walidguirat/alphapose:0.1 .
           #docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
