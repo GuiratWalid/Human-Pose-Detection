@@ -56,16 +56,16 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Google Cloud SDK
-        run: |
+      - run: 
           echo "Setting up Google Cloud SDK..."
-          #uses: google-github-actions/setup-gcloud@master
-          #with:
+          # uses: google-github-actions/setup-gcloud@master
+          # with:
           #  service_account_key: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
           #  project_id: your-gcp-project-id
           #  export_default_credentials: true
 
       - name: Authenticate with Google Cloud
-        run: |
+      - run: 
           echo "Authenticating with Google Cloud..."
           # gcloud auth activate-service-account --key-file=${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
 
