@@ -14,10 +14,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: Set up Python 3.x
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v2
 
       - name: Install dependencies (Python & PyTorch)
         run: |
@@ -31,12 +31,14 @@ jobs:
           #pip install cython
           #sudo apt-get install libyaml-dev
           #python3 setup.py build develop --user
+          echo "Run !"
 
       - name: Install PyTorch3D (for visualization)
       - run: |
           #conda install -c fvcore -c iopath -c conda-forge fvcore iopath
           #conda install -c bottler nvidiacub
           #pip install git+ssh://git@github.com/facebookresearch/pytorch3d.git@stable
+          echo "Run !"
       - name: Build Docker Image
       - run: |
           echo "Run !"
@@ -60,7 +62,7 @@ jobs:
       - run: echo "Run !"
 
       - name: Authenticate with Google Cloud
-        run: #gcloud auth activate-service-account --key-file=${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+      - run: #gcloud auth activate-service-account --key-file=${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
             echo "Run !"
       - name: Pull Docker Image
         run: |
